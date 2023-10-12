@@ -2,8 +2,8 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 ARG TARGETARCH
 
-RUN useradd -rm -d /home/backupuser -s /bin/bash -g root -G sudo -u 1001 backupuser
-USER backupuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
 
 RUN mkdir -p /backup/pgdump
 # RUN chown -R postgreuser:postgreuser /backup/pgdump
