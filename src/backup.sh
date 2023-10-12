@@ -5,7 +5,7 @@ set -o pipefail
 
 source ./env.sh
 
-user=${whoami}
+user=$(whoami)
 
 echo "Creating backup of $POSTGRES_DATABASE database..."
 pg_dump --format=custom \
