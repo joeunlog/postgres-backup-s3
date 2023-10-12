@@ -2,6 +2,8 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 ARG TARGETARCH
 
+RUN apk --no-cache add adduser
+
 RUN useradd -u 1001 postgreuser
 RUN mkdir -p /backup/pgdump
 RUN chown -R postgreuser:postgreuser /backup/pgdump
