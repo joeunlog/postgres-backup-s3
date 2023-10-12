@@ -5,6 +5,9 @@ set -o pipefail
 
 source ./env.sh
 
+whoami
+ls -al /backup
+
 echo "Creating backup of $POSTGRES_DATABASE database..."
 pg_dump --format=custom \
         -h $POSTGRES_HOST \
