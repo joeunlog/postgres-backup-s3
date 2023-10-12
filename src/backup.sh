@@ -12,7 +12,7 @@ pg_dump --format=custom \
         -U $POSTGRES_USER \
         -d $POSTGRES_DATABASE \
         $PGDUMP_EXTRA_OPTS \
-        > /backup/pgdump/db.dump
+        -f /backup/pgdump/$POSTGRES_DATABASE.dump
 
 timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
 s3_uri_base="s3://${S3_BUCKET}/${S3_PREFIX}/${POSTGRES_DATABASE}_${timestamp}.dump"
@@ -25,7 +25,7 @@ if [ -n "$PASSPHRASE" ]; then
   local_file="db.dump.gpg"
   s3_uri="${s3_uri_base}.gpg"
 else
-  local_file="db.dump"
+  local_file="/backup/pgdump/${POSTGRES_DATABASE}.dump"
   s3_uri="$s3_uri_base"
 fi
 
