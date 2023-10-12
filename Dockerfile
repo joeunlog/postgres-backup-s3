@@ -3,10 +3,9 @@ FROM alpine:${ALPINE_VERSION}
 ARG TARGETARCH
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
 
 RUN mkdir -p /backup/pgdump
-# RUN chown -R postgreuser:postgreuser /backup/pgdump
+RUN chown -R appgroup:appuser /backup/pgdump
 
 ADD src/install.sh install.sh
 RUN sh install.sh && rm install.sh
