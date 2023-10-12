@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/postgres-backup-s3:${{ matrix.postgres }}-appuser
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/postgres-backup-s3:${{ matrix.postgres }}-chown
           build-args: |
             ALPINE_VERSION=${{ matrix.alpine }}
           platforms: |
