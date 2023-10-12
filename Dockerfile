@@ -28,4 +28,6 @@ ADD src/env.sh env.sh
 ADD src/backup.sh backup.sh
 ADD src/restore.sh restore.sh
 
+RUN mkdir -p /backup/pgdump && chmod 755 /backup/pgdump
+
 CMD ["sh", "run.sh"]
