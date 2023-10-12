@@ -2,6 +2,10 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 ARG TARGETARCH
 
+RUN useradd -u 1001 postgreuser
+RUN mkdir -p /backup/pgdump
+RUN chown -R postgreuser:postgreuser /backup/pgdump
+
 ADD src/install.sh install.sh
 RUN sh install.sh && rm install.sh
 
@@ -27,7 +31,5 @@ ADD src/run.sh run.sh
 ADD src/env.sh env.sh
 ADD src/backup.sh backup.sh
 ADD src/restore.sh restore.sh
-
-RUN mkdir -p /backup/pgdump && chmod 755 /backup/pgdump
 
 CMD ["sh", "run.sh"]
