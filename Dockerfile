@@ -4,7 +4,14 @@ ARG TARGETARCH
 
 RUN mkdir -p /backup/pgdump
 
-RUN addgroup -S appuser && adduser -S appuser -G appuser && chown -R appuser:appuser /backup/pgdump
+RUN addgroup -S appuser && adduser -S appuser -G appuser && chown -R appuser:appuser /backup
+RUN ls -al
+RUN ls -al /backup
+
+RUN chmod -R 666 /backup
+
+RUN ls -al
+RUN ls -al /backup
 
 ADD src/install.sh install.sh
 RUN sh install.sh && rm install.sh
