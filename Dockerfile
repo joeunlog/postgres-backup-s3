@@ -4,7 +4,7 @@ ARG TARGETARCH
 
 RUN mkdir -p /backup/pgdump
 
-RUN addgroup -S appuser && adduser -S appuser -G appuser && chown -R appuser:appuser /backup
+RUN addgroup -S appuser && adduser -S appuser -G appuser -u 1001  && chown -R appuser:appuser /backup
 RUN ls -al
 RUN ls -al /backup
 
