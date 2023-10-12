@@ -2,9 +2,11 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 ARG TARGETARCH
 
-RUN mkdir -p /backup/pgdump
+RUN addgroup -S appuser && adduser -S appuser -G appuser
 
-RUN addgroup -S appuser && adduser -S appuser -G appuser && chown -R appuser:appuser /backup/pgdump
+USER appuser
+
+RUN mkdir -p /backup/pgdump
 
 ADD src/install.sh install.sh
 RUN sh install.sh && rm install.sh
